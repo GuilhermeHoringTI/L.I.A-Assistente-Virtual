@@ -1,12 +1,12 @@
 import speech_recognition as sr
 import pyttsx3
-import datetime
 import pywhatkit
 import os
 
 audio = sr.Recognizer()
 maquina = pyttsx3.init()
 maquina.runAndWait()
+
 
 def executa_comando():
     try:
@@ -24,14 +24,10 @@ def executa_comando():
 
     return comando
 
+
 def comando_voz():
     comando = executa_comando()
-    if 'horas' in comando:
-        hora = datetime.datetime.now().strftime('%H:%M')
-        maquina.say('Agora são' + hora)
-        print(hora)
-        maquina.runAndWait()
-    elif 'toque' in comando:
+    if 'toque' in comando:
         musica = comando.replace('toque', '')
         resultado = pywhatkit.playonyt(musica)
         maquina.say('Tocando musica')
@@ -59,9 +55,11 @@ def comando_voz():
     elif 'powerpoint' in comando:
         resultado = os.system('start powerpnt.exe')
         maquina.say('Abrindo o Power Point')
-        maquina.runAndWait()  
+        maquina.runAndWait()
     elif 'arquivos' in comando:
         resultado = os.system('start explorer.exe')
-        maquina.say('Abrindo o Windows Explorer') 
+        maquina.say('Abrindo o Windows Explorer')
         maquina.runAndWait()
+
+
 comando_voz()
